@@ -356,6 +356,11 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'tpope/vim-fugitive',
+    config = function() vim.keymap.set('n', '<leader>gs', '<cmd>Git<CR>', { desc = 'Git status (fugitive)' }) end,
+  },
+
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
