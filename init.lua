@@ -258,6 +258,37 @@ require('lazy').setup({
   -- NOTE: Plugins can be added via a link or github org/name. To run setup automatically, use `opts = {}`
   { 'NMAC427/guess-indent.nvim', opts = {} },
 
+  {
+    'stevearc/conform.nvim',
+    opts = {
+      format_on_save = {
+        lsp_fallback = false,
+      },
+      formatters_by_ft = {
+        java = { 'google_java_format' },
+      },
+    },
+  },
+  -- Markdwon renderer Plugin, zeigt eine Prewiev an
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    ft = { 'markdown' },
+    opts = {},
+  },
+  {
+    'iamcco/markdown-preview.nvim',
+    ft = { 'markdown' },
+    build = 'cd app && npm install',
+    init = function() vim.g.mkdp_filetypes = { 'markdown' } end,
+  },
+  {
+    'nvim-java/nvim-java',
+    config = function()
+      require('java').setup()
+      vim.lsp.enable 'jdtls'
+    end,
+  },
+
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
   -- If you prefer to call `setup` explicitly, use:
   --    {
@@ -293,7 +324,7 @@ require('lazy').setup({
             else
               gitsigns.nav_hunk 'next'
             end
-          end)
+          end, { desc = 'Next Hunk' })
 
           map('n', '[c', function()
             if vim.wo.diff then
@@ -301,26 +332,26 @@ require('lazy').setup({
             else
               gitsigns.nav_hunk 'prev'
             end
-          end)
+          end, { desc = 'Previos Hunk' })
 
           -- Actions
-          map('n', '<leader>hs', gitsigns.stage_hunk)
-          map('n', '<leader>hr', gitsigns.reset_hunk)
+          map('n', '<leader>hs', gitsigns.stage_hunk, { desc = 'stage Hunk' })
+          map('n', '<leader>hr', gitsigns.reset_hunk, { desc = 'reset Hunk' })
 
-          map('v', '<leader>hs', function() gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' } end)
+          map('v', '<leader>hs', function() gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' } end, { desc = 'stage Hunk' })
 
-          map('v', '<leader>hr', function() gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end)
+          map('v', '<leader>hr', function() gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end, { desc = 'reset Hunk' })
 
-          map('n', '<leader>hS', gitsigns.stage_buffer)
-          map('n', '<leader>hR', gitsigns.reset_buffer)
-          map('n', '<leader>hp', gitsigns.preview_hunk)
-          map('n', '<leader>hi', gitsigns.preview_hunk_inline)
+          map('n', '<leader>hS', gitsigns.stage_buffer, { desc = 'stage Buffer' })
+          map('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'reset Buffer' })
+          map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'preview hunk' })
+          map('n', '<leader>hi', gitsigns.preview_hunk_inline, { desc = 'preview Hunk Inline' })
 
-          map('n', '<leader>hb', function() gitsigns.blame_line { full = true } end)
+          map('n', '<leader>hb', function() gitsigns.blame_line { full = true } end, { desc = 'blame Line' })
 
-          map('n', '<leader>hd', gitsigns.diffthis)
+          map('n', '<leader>hd', gitsigns.diffthis, { desc = 'see diff of Buffer' })
 
-          map('n', '<leader>hD', function() gitsigns.diffthis '~' end)
+          map('n', '<leader>hD', function() gitsigns.diffthis '~' end, { desc = 'see diff of Buffer' })
 
           map('n', '<leader>hQ', function() gitsigns.setqflist 'all' end)
           map('n', '<leader>hq', gitsigns.setqflist)
@@ -343,17 +374,6 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
     },
-  },
-
-  {
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      require('onedark').setup {
-        style = 'darker', -- dark | darker | cool | deep | warm | warmer | light
-      }
-      require('onedark').load()
-    end,
   },
 
   {
@@ -693,6 +713,8 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'lua-language-server', -- Lua Language server
         'stylua', -- Used to format Lua code
+        'google-java-format',
+        'prettier',
         -- You can add other tools here that you want Mason to install
       })
 
@@ -763,6 +785,8 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        java = { 'google-java-format' },
+        markdown = { 'prettier' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
