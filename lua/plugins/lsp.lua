@@ -122,7 +122,18 @@ return {
       -- gopls = {},
       -- pyright = {},
       -- rust_analyzer = {},
-      jdtls = {},
+      jdtls = {
+        settings = {
+          java = {
+            format = {
+              settings = {
+                url = vim.fn.stdpath 'config' .. '/java/Default.xml',
+                profile = 'Default',
+              },
+            },
+          },
+        },
+      },
       marksman = {},
       --
       -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -143,7 +154,6 @@ return {
     vim.list_extend(ensure_installed, {
       'lua-language-server', -- Lua Language server
       'stylua', -- Used to format Lua code
-      'google-java-format',
       'prettier',
       -- You can add other tools here that you want Mason to install
     })
