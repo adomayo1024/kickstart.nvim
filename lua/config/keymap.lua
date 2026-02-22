@@ -123,3 +123,23 @@ vim.keymap.set('n', '<leader>gbsn', function()
     vim.cmd('Git switch -c ' .. vim.fn.shellescape(input))
   end)
 end, { desc = 'Switch to a new branch' })
+
+--Switching to existing branch via telescope picker
+vim.keymap.set('n', '<leader>gbse', function()
+  require('telescope.builtin').git_branches {
+    attach_mappings = function(prompt_bufnr, map)
+      local actions = require 'telescope.actions'
+      local action_state = require 'telescope.actions.state'
+
+      local function git_switch_to_branch()
+        local entry = action_state.get_selected_entry()
+        actions.close(prompt_bufnr)
+        vim.cmd('Git switch ' .. vim.fn.shellescape(entry.value))
+      end
+
+      map('i', '<CR>', git_switch_to_branch)
+      map('n', '<CR>', git_switch_to_branch)
+      return true
+    end,
+  }
+end, { desc = 'Git switch to branch via telescope' })
