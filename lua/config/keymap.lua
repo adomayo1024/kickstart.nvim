@@ -104,3 +104,10 @@ vim.keymap.set('n', '<leader>gdb', function()
     vim.cmd('Git push origin --delete ' .. vim.fn.shellescape(input))
   end)
 end, { desc = 'Deleted branch lokal and remote' })
+--switch to a new branch
+vim.keymap.set('n', '<leader>gbsn', function()
+  vim.ui.input({ prompt = 'Git switch branch: ' }, function(input)
+    if not input or input == '' then return end
+    vim.cmd('Git switch -c ' .. vim.fn.shellescape(input))
+  end)
+end, { desc = 'Switch to a new branch' })
