@@ -80,7 +80,7 @@ end, { desc = 'Git add via Telescope' })
 
 vim.keymap.set('n', '<leader>gp', function()
   local function has_upstream()
-    local result = vim.fn.system {
+    vim.fn.system {
       'git',
       'rev-parse',
       '--abbrev-ref',
