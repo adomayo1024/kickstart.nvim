@@ -58,3 +58,22 @@ vim.keymap.set('n', '<leader>ga', function()
     vim.cmd('Git add ' .. vim.fn.shellescape(input))
   end)
 end, { desc = 'Git add (prompt)' })
+
+vim.keymap.set('n', '<leader>gA', function()
+  require('telescope.builtin').git_files {
+    attach_mappings = function(prompt_bufnr, map)
+      local actions = require 'telescope.actions'
+      local action_state = require 'telescope.actions.state'
+
+      local function git_add_selected()
+        local entry = action_state.get_selected_entry()
+        actions.close(prompt_bufnr)
+        vim.cmd('Git add ' .. vim.fn.shellescape(entry.value))
+      end
+
+      map('i', '<CR>', git_add_selected)
+      map('n', '<CR>', git_add_selected)
+      return true
+    end,
+  }
+end, { desc = 'Git add via Telescope' })
