@@ -60,7 +60,7 @@ vim.keymap.set('n', '<leader>ga', function()
 end, { desc = 'Git add (prompt)' })
 
 vim.keymap.set('n', '<leader>gA', function()
-  require('telescope.builtin').git_files {
+  require('telescope.builtin').git_status {
     attach_mappings = function(prompt_bufnr, map)
       local actions = require 'telescope.actions'
       local action_state = require 'telescope.actions.state'
