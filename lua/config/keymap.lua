@@ -78,4 +78,21 @@ vim.keymap.set('n', '<leader>gA', function()
   }
 end, { desc = 'Git add via Telescope' })
 
-vim.keymap.set('n', '<leader>gp', '<cmd>Git push<CR>', { desc = 'Git push with already upstream' })
+vim.keymap.set('n', '<leader>gp', function()
+  local function has_upstream()
+    local result = vim.fn.system {
+      'git',
+      'rev-parse',
+      '--abbrev-ref',
+      '--symbolic-full-name',
+      '@{u}',
+    }
+    return vim.v.shell_error == 0
+  end
+
+  if has_upstream() then
+    vim.cmd 'Git push'
+  else
+    vim.cmd 'Git push -u origin HEAD'
+  end
+end, { desc = 'Git push' })
