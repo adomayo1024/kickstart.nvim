@@ -48,5 +48,4 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 --Neotree keymaps
 --
-vim.keymap.set('n', '<leader>no', '<cmd> Neotree<CR>', { desc = 'Open Neotree window' })
-vim.keymap.set('n', '<leader>nc', '<cmd> Neotree action=close<CR>', { desc = 'Close Neotree window' })
+vim.keymap.set('n', '<leader>no', '<cmd> Neotree toggle<CR>', { desc = 'Open Neotree window' })
