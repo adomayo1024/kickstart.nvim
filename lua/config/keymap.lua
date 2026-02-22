@@ -100,8 +100,20 @@ end, { desc = 'Git push' })
 vim.keymap.set('n', '<leader>gdb', function()
   vim.ui.input({ prompt = 'Git delete branch: ' }, function(input)
     if not input or input == '' then return end
-    vim.cmd('Git add ' .. vim.fn.shellescape(input))
-    vim.cmd('Git push origin --delete ' .. vim.fn.shellescape(input))
+    local function remote_branch_exists(branch)
+      vim.fn.system {
+        'git',
+        'ls-remote',
+        '--exit-code',
+        '--heads',
+        'origin',
+        branch,
+      }
+      return vim.v.shell_error == 0
+    end
+
+    vim.cmd('Git branch -d ' .. vim.fn.shellescape(input))
+    if remote_branch_exists(input) then vim.cmd('Git push origin --delete ' .. vim.fn.shellescape(input)) end
   end)
 end, { desc = 'Deleted branch lokal and remote' })
 --switch to a new branch
