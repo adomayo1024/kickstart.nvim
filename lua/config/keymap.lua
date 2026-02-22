@@ -96,3 +96,11 @@ vim.keymap.set('n', '<leader>gp', function()
     vim.cmd 'Git push -u origin HEAD'
   end
 end, { desc = 'Git push' })
+
+vim.keymap.set('n', '<leader>gdb', function()
+  vim.ui.input({ prompt = 'Git delete branch: ' }, function(input)
+    if not input or input == '' then return end
+    vim.cmd('Git add ' .. vim.fn.shellescape(input))
+    vim.cmd('Git push origin --delete ' .. vim.fn.shellescape(input))
+  end)
+end, {desc = "Deleted branch lokal and remote" })
