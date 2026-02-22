@@ -78,4 +78,4 @@ vim.keymap.set('n', '<leader>gA', function()
   }
 end, { desc = 'Git add via Telescope' })
 
-vim.keymap.set('n', '<leader>gp', '<cmd>Git push', { desc = 'Git push with already upstream' })
+vim.keymap.set('n', '<leader>gp', '<cmd>Git push<CR>', { desc = 'Git push with already upstream' })
