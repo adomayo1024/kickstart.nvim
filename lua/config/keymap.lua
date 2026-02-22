@@ -143,3 +143,6 @@ vim.keymap.set('n', '<leader>gbse', function()
     end,
   }
 end, { desc = 'Git switch to branch via telescope' })
+
+--Git pull
+vim.keymap.set('n', '<leader>gP', '<cmd>Git pull<CR>', { desc = 'Git pull' })
