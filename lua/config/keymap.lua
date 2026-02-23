@@ -42,8 +42,13 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<leader>no', '<cmd> Neotree toggle<CR>', { desc = 'Open Neotree window' })
 
 --Git keymaps
+--Git commit
 vim.keymap.set('n', '<leader>gc', function() vim.cmd 'Git commit' end, { desc = 'Git commit' })
+
+--Git log
 vim.keymap.set('n', '<leader>gl', function() vim.cmd 'Git log' end, { desc = 'Git log' })
+
+--Git add with given file
 vim.keymap.set('n', '<leader>ga', function()
   vim.ui.input({ prompt = 'Git add path: ' }, function(input)
     if not input or input == '' then return end
@@ -51,6 +56,7 @@ vim.keymap.set('n', '<leader>ga', function()
   end)
 end, { desc = 'Git add (prompt)' })
 
+--Git add via telescope picker
 vim.keymap.set('n', '<leader>gA', function()
   require('telescope.builtin').git_status {
     attach_mappings = function(prompt_bufnr, map)
@@ -70,6 +76,7 @@ vim.keymap.set('n', '<leader>gA', function()
   }
 end, { desc = 'Git add via Telescope' })
 
+--Git push
 vim.keymap.set('n', '<leader>gp', function()
   local function has_upstream()
     vim.fn.system {
@@ -109,6 +116,7 @@ vim.keymap.set('n', '<leader>gbd', function()
     if remote_branch_exists(input) then vim.cmd('Git push origin --delete ' .. vim.fn.shellescape(input)) end
   end)
 end, { desc = 'Deleted branch lokal and remote' })
+
 --switch to a new branch
 vim.keymap.set('n', '<leader>gbsn', function()
   vim.ui.input({ prompt = 'Git switch branch: ' }, function(input)
