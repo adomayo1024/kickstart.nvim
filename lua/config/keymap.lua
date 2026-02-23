@@ -43,6 +43,7 @@ vim.keymap.set('n', '<leader>no', '<cmd> Neotree toggle<CR>', { desc = 'Open Neo
 
 --Git keymaps
 vim.keymap.set('n', '<leader>gc', function() vim.cmd 'Git commit' end, { desc = 'Git commit' })
+vim.keymap.set('n', '<leader>gl', function() vim.cmd 'Git log' end, { desc = 'Git log' })
 vim.keymap.set('n', '<leader>ga', function()
   vim.ui.input({ prompt = 'Git add path: ' }, function(input)
     if not input or input == '' then return end
