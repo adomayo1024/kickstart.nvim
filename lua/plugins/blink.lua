@@ -40,7 +40,6 @@ return { -- Autocompletion
 
       ['<C-Space>'] = { 'show', 'show_documentation' },
       ['<C-e>'] = { 'hide' },
-
     },
 
     appearance = {
