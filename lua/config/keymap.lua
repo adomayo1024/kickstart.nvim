@@ -89,7 +89,8 @@ vim.keymap.set('n', '<leader>gp', function()
   end
 end, { desc = 'Git push' })
 
-vim.keymap.set('n', '<leader>gdb', function()
+--Deleting a given branch
+vim.keymap.set('n', '<leader>gbd', function()
   vim.ui.input({ prompt = 'Git delete branch: ' }, function(input)
     if not input or input == '' then return end
     local function remote_branch_exists(branch)
