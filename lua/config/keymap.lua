@@ -41,6 +41,11 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 --
 vim.keymap.set('n', '<leader>no', '<cmd> Neotree toggle<CR>', { desc = 'Open Neotree window' })
 
+--Mermaid keymaps
+
+vim.keymap.set('n', '<leader>mp', '<cmd> MermaidPreview<CR>', { desc = 'Preview Mermaid diagramm in Browser' })
+vim.keymap.set('n', '<leader>mf', '<cmd> MermaidFormat<CR>', { desc = 'Formats the current Mermaid File' })
+
 --Git keymaps
 vim.keymap.set('n', '<leader>gc', function() vim.cmd 'Git commit' end, { desc = 'Git commit' })
 vim.keymap.set('n', '<leader>gl', function() vim.cmd 'Git log' end, { desc = 'Git log' })
