@@ -45,6 +45,14 @@ vim.keymap.set('n', '<leader>no', '<cmd> Neotree toggle<CR>', { desc = 'Open Neo
 
 vim.keymap.set('n', '<leader>mp', '<cmd> MermaidPreview<CR>', { desc = 'Preview Mermaid diagramm in Browser' })
 vim.keymap.set('n', '<leader>mf', '<cmd> MermaidFormat<CR>', { desc = 'Formats the current Mermaid File' })
+vim.keymap.set('n', '<leader>mr', function()
+  local buffName = vim.api.nvim_buf_get_name(0)
+  local pngName = vim.fn.fnamemodify(buffName, ':r') .. '.png'
+  if vim.bo.modified then
+    vim.cmd 'silent write'
+    vim.cmd('!mmdc -i "' .. buffName .. '" -o "' .. pngName .. '"')
+  end
+end, { desc = 'Renderd Mermaid diagramm of current buffer' })
 
 --Git keymaps
 vim.keymap.set('n', '<leader>gc', function() vim.cmd 'Git commit' end, { desc = 'Git commit' })
