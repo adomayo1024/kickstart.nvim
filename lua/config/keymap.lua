@@ -54,6 +54,16 @@ vim.keymap.set('n', '<leader>mr', function()
   end
 end, { desc = 'Renderd Mermaid diagramm of current buffer' })
 
+--PlantUml keymaps
+
+vim.keymap.set('n', '<leader>pr', function()
+  local buffName = vim.api.nvim_buf_get_name(0)
+  if vim.bo.modified then
+    vim.cmd 'silent write'
+    vim.cmd('!java -jar /opt/plantuml.jar "' .. buffName .. '"')
+  end
+end, { desc = 'Rendered Plantuml diagramm of current buffer' })
+
 --Git keymaps
 vim.keymap.set('n', '<leader>gc', function() vim.cmd 'Git commit' end, { desc = 'Git commit' })
 vim.keymap.set('n', '<leader>gl', function() vim.cmd 'Git log' end, { desc = 'Git log' })
