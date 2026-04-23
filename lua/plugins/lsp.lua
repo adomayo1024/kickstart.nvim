@@ -168,7 +168,10 @@ return {
     end
 
     --Erlang
-    vim.lsp.config ('erlangls', {})
+    vim.lsp.config('erlangls', {
+      cmd = { 'erlang_ls' },
+      root_dir = function(fname) return vim.fs.root(fname, { 'rebar.config', '.git' }) end,
+    })
     vim.lsp.enable 'erlangls'
 
     -- Special Lua Config, as recommended by neovim help docs

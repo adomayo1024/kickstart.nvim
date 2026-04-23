@@ -13,6 +13,7 @@ return { -- Highlight, edit, and navigate code
         'java',
         'markdown',
         'markdown_inline',
+        'erlang',
       },
       highlight = { enable = true },
       indent = { enable = true },
