@@ -12,6 +12,24 @@ return {
   },
   opts = {
     filesystem = {
+      filtered_items = {
+        visible = false,
+        hide_dotfiles = true,
+        hide_gitignored = true,
+        hide_by_pattern = {
+          '*.aux',
+          '*.log',
+          '*.toc',
+          '*.out',
+          '*.synctex.gz',
+          '*.fdb_latexmk',
+          '*.fls',
+          '*.bbl',
+          '*.blg',
+          '*.nav',
+          '*.snm',
+        },
+      },
       window = {
         mappings = {
           ['\\'] = 'close_window',
