@@ -166,6 +166,10 @@ return {
       vim.lsp.enable(name)
     end
 
+    --Erlang
+    vim.lsp.config ('erlangls', {})
+    vim.lsp.enable 'erlangls'
+
     -- Special Lua Config, as recommended by neovim help docs
     vim.lsp.config('lua_ls', {
       on_init = function(client)
