@@ -25,6 +25,9 @@ return { -- Autocompletion
       },
       opts = {},
     },
+    {
+      'nvim-lua/plenary.nvim',
+    },
   },
   --- @module 'blink.cmp'
   --- @type blink.cmp.Config
