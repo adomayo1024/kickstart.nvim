@@ -174,6 +174,11 @@ return {
     })
     vim.lsp.enable 'erlangls'
 
+    vim.lsp.config('astro', {
+      capabilities = capabilities,
+    })
+    vim.lsp.enable 'astro'
+
     -- Special Lua Config, as recommended by neovim help docs
     vim.lsp.config('lua_ls', {
       on_init = function(client)

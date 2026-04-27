@@ -14,6 +14,7 @@ return { -- Highlight, edit, and navigate code
         'markdown',
         'markdown_inline',
         'erlang',
+        'typescript',
       },
       highlight = { enable = true },
       indent = { enable = true },
