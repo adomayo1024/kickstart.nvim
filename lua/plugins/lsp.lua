@@ -174,6 +174,7 @@ return {
     })
     vim.lsp.enable 'erlangls'
 
+    --Typescript
     vim.lsp.config('astro', {
       capabilities = capabilities,
     })
