@@ -81,6 +81,9 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'js',
+        'java-debug-adapter',
+        'codelldb',
       },
     }
 
@@ -122,6 +125,54 @@ return {
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
+    dap.adapters.node2 = {
+      type = 'executable',
+      command = 'node',
+      args = { vim.fn.stdpath 'data' .. '/mason/packages/node-debug2-adapter/out/src/nodeDebug.js' },
+    }
+
+    dap.configurations.typescript = {
+      {
+        type = 'node2',
+        request = 'launch',
+        name = 'Launch TS file',
+        program = '${file}',
+        cwd = vim.fn.getcwd(),
+        sourceMaps = true,
+        protocol = 'inspector',
+      },
+    }
+
+    dap.configurations.java = {
+      {
+        type = 'java',
+        request = 'launch',
+        name = 'Launch Java program',
+        mainClass = function() return vim.fn.input 'Main class > ' end,
+      },
+    }
+
+    dap.adapters.codelldb = {
+      type = 'server',
+      port = '13000',
+      executable = {
+        command = vim.fn.stdpath 'data' .. '/mason/packages/codelldb/extension/adapter/codelldb',
+        args = { '--port', '13000' },
+      },
+    }
+
+    dap.configurations.cpp = {
+      {
+        name = 'Launch C++ program',
+        type = 'codelldb',
+        request = 'launch',
+        program = function() return vim.fn.input 'Path to executable > ' end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+      },
+    }
+
+    dap.configurations.c = dap.configurations.cpp
     -- Install golang specific config
     require('dap-go').setup {
       delve = {
