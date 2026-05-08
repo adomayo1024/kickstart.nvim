@@ -32,6 +32,7 @@ return { -- Autoformat
       markdown = { 'prettier' },
       erlang = { 'erlfmt' },
       latex = { 'latexindent' },
+      html = { 'htmlbeautifier' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
