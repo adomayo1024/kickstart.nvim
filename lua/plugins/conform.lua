@@ -31,6 +31,7 @@ return { -- Autoformat
       java = { 'google-java-format' },
       markdown = { 'prettier' },
       erlang = { 'erlfmt' },
+      latex = { 'latexindent' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
