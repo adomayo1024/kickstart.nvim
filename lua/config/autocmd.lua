@@ -9,3 +9,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function() vim.hl.on_yank() end,
 })
+
+-- ändert die farbe des balken zur visualisierung von colorcolumn
+vim.api.nvim_create_autocmd('ColorScheme', {
+  pattern = '*',
+  callback = function() vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#2d3139' }) end,
+})

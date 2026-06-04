@@ -18,6 +18,7 @@ vim.o.number = true
 --  Experiment for yourself to see if you like it!
 vim.o.relativenumber = true
 
+vim.opt.colorcolumn = '80'
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
 
