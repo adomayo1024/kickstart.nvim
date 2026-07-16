@@ -137,6 +137,16 @@ return {
       marksman = {},
       texlab = {},
       elp = {},
+      ltex = {
+        -- Zwingt ltex, den von Mason installierten Pfad zu nutzen
+        cmd = { 'ltex-ls' },
+        filetypes = { 'tex', 'plaintex', 'markdown', 'text' },
+        settings = {
+          ltex = {
+            language = 'de-DE', -- Setzt die Grammatikprüfung auf Deutsch
+          },
+        },
+      },
       --
       -- Some languages (like typescript) have entire language plugins that can be useful:
       --    https://github.com/pmizio/typescript-tools.nvim
@@ -152,11 +162,19 @@ return {
     --    :Mason
     --
     -- You can press `g?` for help in this menu.
-    local ensure_installed = vim.tbl_keys(servers or {})
+    local ensure_installed = {}
+    for name, _ in pairs(servers or {}) do
+      if name == 'ltex' then
+        table.insert(ensure_installed, 'ltex-ls') -- Mason braucht 'ltex-ls'
+      else
+        table.insert(ensure_installed, name)
+      end
+    end
     vim.list_extend(ensure_installed, {
       'lua-language-server', -- Lua Language server
       'stylua', -- Used to format Lua code
       'prettier',
+      'ltex-ls',
       -- You can add other tools here that you want Mason to install
     })
 

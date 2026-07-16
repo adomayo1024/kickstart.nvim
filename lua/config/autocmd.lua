@@ -15,3 +15,11 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   pattern = '*',
   callback = function() vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#2d3139' }) end,
 })
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'tex',
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.spelllang = { 'de' }
+  end,
+})
