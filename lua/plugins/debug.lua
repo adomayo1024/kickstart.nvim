@@ -66,7 +66,6 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
-        'js',
         'java-debug-adapter',
         'codelldb',
       },
@@ -78,29 +77,12 @@ return {
     local breakpoint_icons = vim.g.have_nerd_font
         and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
       or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
+
     for type, icon in pairs(breakpoint_icons) do
       local tp = 'Dap' .. type
       local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
       vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
     end
-
-    dap.adapters.node2 = {
-      type = 'executable',
-      command = 'node',
-      args = { vim.fn.stdpath 'data' .. '/mason/packages/node-debug2-adapter/out/src/nodeDebug.js' },
-    }
-
-    dap.configurations.typescript = {
-      {
-        type = 'node2',
-        request = 'launch',
-        name = 'Launch TS file',
-        program = '${file}',
-        cwd = vim.fn.getcwd(),
-        sourceMaps = true,
-        protocol = 'inspector',
-      },
-    }
 
     dap.configurations.java = {
       {
