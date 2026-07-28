@@ -141,6 +141,10 @@ return {
         -- Zwingt ltex, den von Mason installierten Pfad zu nutzen
         cmd = { 'ltex-ls' },
         filetypes = { 'tex', 'plaintex', 'markdown', 'text' },
+        cmd_env = {
+          JAVA_TOOL_OPTIONS = '-Djdk.xml.totalEntitySizeLimit=0',
+        },
+
         settings = {
           ltex = {
             language = 'de-DE', -- Setzt die Grammatikprüfung auf Deutsch
