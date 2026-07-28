@@ -186,19 +186,6 @@ return {
       vim.lsp.enable(name)
     end
 
-    --Erlang
-    vim.lsp.config('erlangls', {
-      cmd = { 'erlang_ls' },
-      root_dir = function(fname) return vim.fs.root(fname, { 'rebar.config', '.git' }) end,
-    })
-    vim.lsp.enable 'erlangls'
-
-    --Typescript
-    vim.lsp.config('astro', {
-      capabilities = capabilities,
-    })
-    vim.lsp.enable 'astro'
-
     -- Special Lua Config, as recommended by neovim help docs
     vim.lsp.config('lua_ls', {
       on_init = function(client)
