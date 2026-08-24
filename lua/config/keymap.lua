@@ -159,6 +159,3 @@ end, { desc = 'Git switch to branch via telescope' })
 
 --Git pull
 vim.keymap.set('n', '<leader>gP', '<cmd>Git pull<CR>', { desc = 'Git pull' })
-
-vim.keymap.set('n', '<leader>cc', ':CECompile compiler=g133<CR>', { desc = 'Compile buffer into Assembly' })
-vim.keymap.set('n', '<leader>cl', ':CECompileLive compiler=g133<CR>', { desc = 'Compile buffer into Assembly und updated live' })

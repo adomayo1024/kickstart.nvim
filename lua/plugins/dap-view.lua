@@ -5,15 +5,12 @@ return {
     dap_view.setup {
       winbar = {
         show = true,
-        sections = { 'watches', 'scopes', 'exceptions', 'breakpoints', 'threads', 'repl', 'memory' },
+        sections = { 'watches', 'scopes', 'console', 'exceptions', 'breakpoints', 'threads', 'repl', 'memory' },
         default_section = 'scopes',
       },
       windows = {
         size = 0.50,
         position = 'right',
-        terminal = {
-          hide = true,
-        },
       },
     }
 

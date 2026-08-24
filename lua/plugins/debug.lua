@@ -104,6 +104,7 @@ return {
         type = 'codelldb',
         request = 'launch',
         program = function() return vim.fn.input 'Path to executable > ' end,
+        console = 'integratedTerminal',
         cwd = '${workspaceFolder}',
         _adapterSettings = {
           dereferencePointers = false,
