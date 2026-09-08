@@ -57,7 +57,18 @@ vim.keymap.set('n', '<leader>pr', function()
   local buffName = vim.api.nvim_buf_get_name(0)
   if vim.bo.modified then
     vim.cmd 'silent write'
-    vim.cmd('!java -jar /opt/plantuml.jar "' .. buffName .. '"')
+
+    local handle = io.popen 'lsb_release -i'
+    local result
+    if handle ~= nil then
+      result = handle:read '*a'
+      handle:close()
+      if result:match 'Arch' then
+        vim.cmd('!plantuml "' .. buffName .. '"')
+      else
+        vim.cmd('!java -jar /opt/plantuml.jar "' .. buffName .. '"')
+      end
+    end
   end
 end, { desc = 'Rendered Plantuml diagramm of current buffer' })
 
