@@ -16,12 +16,24 @@ return {
         visible = false,
         hide_dotfiles = true,
         hide_gitignored = true,
-        hide_ignored = true, -- hide files that are ignored by other gitignore-like files
-        -- other gitignore-like files, in descending order of precedence.
+        hide_ignored = true,
         ignore_files = {
           '.neotreeignore',
-          '.ignore',
-          '.rgignore',
+        },
+        hide_by_pattern = {
+          '*.aux',
+          '*.log',
+          '*.toc',
+          '*.out',
+          '*.synctex.gz',
+          '*.fdb_latexmk',
+          '*.fls',
+          '*.bbl',
+          '*.blg',
+          '*.nav',
+          '*.snm',
+          '*.bfc',
+          '*.run.xml',
         },
       },
       window = {
