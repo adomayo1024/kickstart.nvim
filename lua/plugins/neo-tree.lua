@@ -20,6 +20,7 @@ return {
         ignore_files = {
           '.neotreeignore',
         },
+        always_show = { '.gitignore' },
         hide_by_pattern = {
           '*.aux',
           '*.log',
