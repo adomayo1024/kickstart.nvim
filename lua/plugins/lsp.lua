@@ -139,7 +139,7 @@ return {
       elp = {},
       ltex = {
         -- Zwingt ltex, den von Mason installierten Pfad zu nutzen
-        cmd = { 'ltex-ls' },
+        cmd = { 'ltex-ls-plus' },
         filetypes = { 'tex', 'plaintex', 'markdown', 'text' },
         cmd_env = {
           JAVA_TOOL_OPTIONS = '-Djdk.xml.totalEntitySizeLimit=0',
@@ -147,7 +147,20 @@ return {
 
         settings = {
           ltex = {
-            language = 'de-DE', -- Setzt die Grammatikprüfung auf Deutsch
+            language = 'de-DE',
+            enabled = { 'latex', 'tex', 'bib', 'markdown' },
+            checkFrequency = 'save',
+            diagnosticSeverity = 'information',
+            additionalRules = {
+              enablePickyRules = true,
+              motherTongue = 'de-DE',
+            },
+            dictionary = {
+              ['de-DE'] = {},
+            },
+            disabledRules = {
+              ['de-DE'] = {},
+            },
           },
         },
       },
