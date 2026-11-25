@@ -145,6 +145,12 @@ return {
           JAVA_TOOL_OPTIONS = '-Djdk.xml.totalEntitySizeLimit=0',
         },
 
+        on_attach = function(client, bufnr)
+          require('ltex_extra').setup {
+            load_langs = { 'de-DE' },
+          }
+        end,
+
         settings = {
           ltex = {
             language = 'de-DE',
